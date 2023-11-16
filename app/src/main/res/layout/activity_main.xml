@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8BC34A"
+    android:backgroundTint="#FFC107"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="TASKS"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        />
+    <EditText
+        android:id="@+id/nametask"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="name of task"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/black"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/datetask"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="the date you put it"
+        android:inputType="date"
+        android:textColorHint="@color/black"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="196dp" />
+
+
+    <Spinner
+        android:id="@+id/sp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:entries="@array/sps" />
+
+    <Button
+        android:id="@+id/Add"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="Add task"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="180dp" />
+
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/io"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:backgroundTint="#1DC10000"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity2">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_gravity="left"
+        android:choiceMode="multipleChoice"
+        tools:visibility="visible" />
+
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Back" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

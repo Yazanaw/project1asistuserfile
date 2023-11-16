@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">project1 asist user file</string>
+    <string-array name="sps">
+        <item>done</item>
+        <item>due</item>
+
+
+    </string-array>
+</resources>
