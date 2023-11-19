@@ -5,26 +5,23 @@ import java.util.Date;
 public class task {
     String taskname;
     String Dateput;
-    String nameworker;
-    String phoneworker;
-    int id;
+    String stat;
+
 
     public task() {
     }
 
-    public task(String taskname, String dateput, String nameworker, String phoneworker,int id) {
+    public task(String taskname, String dateput, String stat) {
         this.taskname=taskname;
         this.Dateput=dateput;
-        this.nameworker=nameworker;
-        this.phoneworker=phoneworker;
-        this.id=id;
+        this.stat=stat;
 
 
     }
     public static final task[] tasks = {
-            new task("Lukukatte", "5894", "ry7rthur","45448",6),
-            new task("Layujukutte", "5894", "ry7rthur","45448",7),
-            new task("Laggggggggggggggggggtte", "5894", "ry7rthur","45448",8),
+            new task("Lukukatte", "5894", "ry7rthur"),
+            new task("Layujukutte", "5894", "ry7rthur"),
+            new task("Laggggggggggggggggggtte", "5894", "ry7rthur"),
     };
 
 
@@ -45,28 +42,12 @@ public class task {
         Dateput = dateput;
     }
 
-    public String getPhoneworker() {
-        return phoneworker;
+    public String getStat() {
+        return stat;
     }
 
-    public void setPhoneworker(String phoneworker) {
-        this.phoneworker = phoneworker;
-    }
-
-    public String getNameworker() {
-        return nameworker;
-    }
-
-    public void setNameworker(String nameworker) {
-        this.nameworker = nameworker;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setStat(String stat) {
+        this.stat = stat;
     }
 
     @Override
@@ -74,7 +55,7 @@ public class task {
         return
                 "taskname='" + taskname + '\'' +
                 ", Dateput=" + Dateput +
-                ", the stat='" + nameworker
+                ", the stat='" + stat
                 ;
     }
 }

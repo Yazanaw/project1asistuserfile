@@ -30,32 +30,12 @@ import java.util.List;
 
 
 public class MainActivity2 extends AppCompatActivity {
-    ArrayAdapter<task> listAdapter ;
+
     ArrayAdapter<String> adapter;
     Gson gson=new Gson();
-
-
-    //ArrayList<task>tas;
-    public String Name ="Name";
-    public String Date="Date";
-    public String Namew="Namew";
-    public String Phone="Phone";
-
-    public String  Flag="Flag";
-    public String  che1="che1";
-    public boolean che2=false;
-    private boolean flag=false;
-    public String Data="Data";
     public int count=0;
-    ArrayList<String> taskList = new ArrayList<>();
-
-
-
     private ListView list;
     private Button back;
-    private CheckBox che;
-    task tas;
-
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
 
@@ -71,16 +51,12 @@ public class MainActivity2 extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        Intent intent = getIntent();
+
         System.out.println("teat");
-        //tas=new task("ghhjh",5429,"hggh",574);
+
         setupSharedPrefs();
         setviews();
 
-        //checkPrefs();
-        // update();
-        listAdapter = new ArrayAdapter<task>(this,
-                android.R.layout.simple_list_item_1,task.tasks);
         String out=prefs.getString("tasks","");
         System.out.println(out);
         if(!out.equals("")) {
@@ -90,28 +66,14 @@ public class MainActivity2 extends AppCompatActivity {
 
 
             int u = prefs.getInt("countr", 0);
-            //  List al = Arrays.asList(tasksarray);
-            // taskList.add("Name: " + name + "\nDate: " + date + "\nNamew: " + namew + "\nPhone: " + phone);
+
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, al);
             list.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
 
         }
-//        String name="",Datee="",namew="",phonee="";
-//        Intent act1=getIntent();
-//        Bundle b=act1.getExtras();
-//        if(b!=null){
-//            String newtask=(String) b.get("newTask");
-//            String [] arr=newtask.split(",");
-//            name = arr[0];
-//            Datee = arr[1];
-//            namew = arr[2];
-////            phonee = arr[3];
-//
-//        }
-//        taskList.add("Name: " + name + " Date: " + Datee + " Namew: " + namew + " Phone: " + phonee);
-//        list.setAdapter(adapter);
+
         btnLoginOnClick();
 
     }
@@ -122,10 +84,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
     private void setviews(){
 
-
-       // che=findViewById(R.id.che);
         list=findViewById(R.id.list);
-
 
     }
 
@@ -133,18 +92,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void btnLoginOnClick() {
 
-
-        listAdapter = new ArrayAdapter<task>(this,
-                android.R.layout.simple_list_item_1,task.tasks);
-
-     //if(che.isChecked()){
-//            if(!flag) {
-
-
-                int id=count;
-
-
-                String name="",Datee="",namew="",phonee="";
+                String name="",Datee="",stat="";
                 Intent act1=getIntent();
                 Bundle b=act1.getExtras();
                 if(b!=null){
@@ -152,14 +100,12 @@ public class MainActivity2 extends AppCompatActivity {
                     String [] arr=newtask.split(",");
                      name = arr[0];
                      Datee = arr[1];
-                     namew = arr[2];
-                     //phonee = arr[3];
+                     stat = arr[2];
+
 
                 }
-                task tas = new task(name, Datee, namew, phonee, id);
+                task tas = new task(name, Datee, stat);
 
-
-                String taskString = gson.toJson(tas);
 
                 String out=prefs.getString("tasks","");
                 List al = new ArrayList<task>();
@@ -172,13 +118,9 @@ public class MainActivity2 extends AppCompatActivity {
                 al.add(tas);
                 String taskString2 = gson.toJson(al);
 
-//                 editor.putString(Name, nametask.getText().toString());
-//                editor.putString(Date, datetask.getText().toString());
-//                editor.putString(Namew,nameworker.getText().toString());
-//                editor.putString(Phone,phoneworker.getText().toString());
 
-                    // editor.putBoolean(che1, che.isChecked());
-                    taskList.add("Name: " + name + " Date: " + Datee + " Namew: " + namew + " Phone: " + phonee);
+
+
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, al);
                     list.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
@@ -188,21 +130,16 @@ public class MainActivity2 extends AppCompatActivity {
                     editor.putInt("countr", count);
                     editor.apply();
 
-                    //editor.putString(Data, taskString);
+
                     editor.commit();
                     Toast.makeText(MainActivity2.this, "helllllooo", Toast.LENGTH_LONG).show();
                     String out2 = prefs.getString("tasks", "");
-                   // Toast.makeText(MainActivity2.this, out2, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity2.this, out2, Toast.LENGTH_LONG).show();
                     System.out.println("out2 is: " + out2);
 
-                    //nametask.setText(taskString);
 
-        // }
-                    // }
 
-                    // authenticate the user
-//             }
-//            }
+
         }
 
 
