@@ -5,19 +5,32 @@
     android:id="@+id/io"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:backgroundTint="#1DC10000"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".MainActivity2">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:text="cleck on the task to make it done"
+        android:textAlignment="center"
+        android:textColor="#150A0A"
+        android:textSize="20sp" />
+
     <ListView
         android:id="@+id/list"
-        android:layout_width="500dp"
+        android:layout_width="300dp"
         android:layout_height="500dp"
-        android:layout_gravity="left"
-        android:choiceMode="multipleChoice"
-        tools:visibility="visible" />
+        android:layout_gravity="center"
+
+        tools:visibility="visible">
+
+    </ListView>
 
 
     <Button
@@ -25,7 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Back" />
+        android:layout_marginTop="5dp"
+        android:onClick="ptnchangstatas"
+        android:text="Back to add" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

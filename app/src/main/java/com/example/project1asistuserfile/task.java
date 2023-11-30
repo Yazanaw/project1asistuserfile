@@ -11,6 +11,10 @@ public class task {
     public task() {
     }
 
+    public task(String stat) {
+        this.stat = stat;
+    }
+
     public task(String taskname, String dateput, String stat) {
         this.taskname=taskname;
         this.Dateput=dateput;
@@ -47,15 +51,15 @@ public class task {
     }
 
     public void setStat(String stat) {
-        this.stat = stat;
+        this.stat = "due";
     }
 
     @Override
     public String toString() {
         return
                 "taskname='" + taskname + '\'' +
-                ", Dateput=" + Dateput +
-                ", the stat='" + stat
+                ", Dateput=" + Dateput+"stat="+stat
+
                 ;
     }
 }

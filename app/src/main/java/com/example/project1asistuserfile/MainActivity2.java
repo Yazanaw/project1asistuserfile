@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -35,6 +36,7 @@ public class MainActivity2 extends AppCompatActivity {
     Gson gson=new Gson();
     public int count=0;
     private ListView list;
+    List al;
     private Button back;
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
@@ -57,23 +59,6 @@ public class MainActivity2 extends AppCompatActivity {
         setupSharedPrefs();
         setviews();
 
-        String out=prefs.getString("tasks","");
-        System.out.println(out);
-        if(!out.equals("")) {
-            List al = new ArrayList<task>();
-            task[] tasksarray = gson.fromJson(out, task[].class);
-            Collections.addAll(al, tasksarray);
-
-
-            int u = prefs.getInt("countr", 0);
-
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, al);
-            list.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-
-        }
-
         btnLoginOnClick();
 
     }
@@ -92,56 +77,85 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void btnLoginOnClick() {
 
-                String name="",Datee="",stat="";
-                Intent act1=getIntent();
-                Bundle b=act1.getExtras();
-                if(b!=null){
-                    String newtask=(String) b.get("newTask");
-                    String [] arr=newtask.split(",");
-                     name = arr[0];
-                     Datee = arr[1];
-                     stat = arr[2];
+        String name="",Datee="",stat="";
+        Intent act1=getIntent();
+        Bundle b=act1.getExtras();
+        if(b!=null){
+            String newtask=(String) b.get("newTask");
+            String [] arr=newtask.split(",");
+            name = arr[0];
+            Datee = arr[1];
+            stat = arr[2];
 
 
-                }
-                task tas = new task(name, Datee, stat);
+        }
+        task tas = new task(name, Datee, stat);
 
 
-                String out=prefs.getString("tasks","");
-                List al = new ArrayList<task>();
-                System.out.println("out is: " + out);
-                if(!out.equals("")) {
-                    task[] tasksarray = gson.fromJson(out, task[].class);
-                    Collections.addAll(al, tasksarray);
-                }
-
-                al.add(tas);
-                String taskString2 = gson.toJson(al);
-
-
-
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, al);
-                    list.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-
-
-                    editor.putString("tasks", taskString2);
-                    editor.putInt("countr", count);
-                    editor.apply();
-
-
-                    editor.commit();
-                    Toast.makeText(MainActivity2.this, "helllllooo", Toast.LENGTH_LONG).show();
-                    String out2 = prefs.getString("tasks", "");
-                    Toast.makeText(MainActivity2.this, out2, Toast.LENGTH_LONG).show();
-                    System.out.println("out2 is: " + out2);
-
-
-
+        String out=prefs.getString("tasks","");
+         al = new ArrayList<task>();
+        System.out.println("out is: " + out);
+        if(!out.equals("")) {
+            task[] tasksarray = gson.fromJson(out, task[].class);
+            Collections.addAll(al, tasksarray);
 
         }
 
 
 
+        al.add(tas);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, al);
+
+        list.setAdapter(adapter);
+        AdapterView.OnItemClickListener item=new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(al.get(position));
+                task tas2= (task) al.get(position);
+                tas2.setStat("done");
+
+
+                System.out.println(list.getAdapter().getItem(position));
+                al.remove(position);
+                adapter.notifyDataSetChanged();
+
+
+
+            }
+
+        };
+
+        list.setOnItemClickListener(item);
+        save();
+
+
+        Toast.makeText(MainActivity2.this, "helllllooo", Toast.LENGTH_LONG).show();
+        String out2 = prefs.getString("tasks", "");
+        Toast.makeText(MainActivity2.this, out2, Toast.LENGTH_LONG).show();
+        System.out.println("out2 is: " + out2);
+
+    }
+    public void save(){
+        String taskString2 = gson.toJson(al);
+        editor.putString("tasks", taskString2);
+
+        editor.putInt("countr", count);
+        editor.apply();
+
+
+        editor.commit();
+    }
+
+
+    @Override
+    protected void onStop() {
+        save();
+        super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        save();
+        super.onPause();
+    }
 }

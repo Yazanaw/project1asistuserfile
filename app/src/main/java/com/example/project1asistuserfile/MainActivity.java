@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText datetask;
     private EditText nameworker;
     private Spinner sp;
-   // private EditText phoneworker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +30,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 String nameoftask=nametask.getText().toString();
                 String dateoftask=datetask.getText().toString();
-                //String nameofworker=nameworker.getText().toString();
-                String spinerr=sp.getSelectedItem().toString();
-               // String phonenum=phoneworker.getText().toString();
+
                 String res="";
 
                  res=  nameoftask +
-                        "," + dateoftask +
-                        "," + spinerr;
+                        "," + dateoftask+","+"due" ;
                 intent.putExtra("newTask",res);
                 startActivity(intent);
             }
@@ -47,21 +44,11 @@ public class MainActivity extends AppCompatActivity {
         nametask=findViewById(R.id.nametask);
         datetask=findViewById(R.id.datetask);
 
-       // nameworker=findViewById(R.id.nameworker);
-        sp=findViewById(R.id.sp);
-
-      //  phoneworker=findViewById(R.id.phoneworker);
 
 
 
 
 
     }
-//    public void onClickSend(View view) {
-//        String msg = test.getText().toString();
-//
-//        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-//        intent.putExtra("data", msg);
-//        startActivity(intent);
-//    }
+
 }
